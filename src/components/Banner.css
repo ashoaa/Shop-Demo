@@ -1,0 +1,26 @@
+.banner {
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  color: #ffffff;
+  background-color: #1565c0;
+}
+
+.banner-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  grid-row: 1 / span 5;
+}
+.banner-control {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: end;
+  align-items: center;
+  grid-row: 1 / span 5;
+}
