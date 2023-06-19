@@ -2,7 +2,7 @@
   overflow: hidden;
   border-radius: 15px;
   height: auto;
-  width: 60vw;
+  width: 50vw;
   background-color: #ffffff;
   color: #1565c0;
 }
@@ -17,4 +17,10 @@
   display: flex;
   justify-content: center;
   padding-bottom: 0.7rem;
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    width: 60vw;
+  }
 }
