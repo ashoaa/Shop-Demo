@@ -11,7 +11,6 @@ const App = () => {
       {!finishSignUp && <SignUp />}
       {finishSignUp && logout && <LogIn />}
       {!logout && <Home />}
-      {/* <SignUp /> */}
     </>
   );
 };
