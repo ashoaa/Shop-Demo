@@ -42,7 +42,7 @@ const Input = (props) => {
           {type === "password" && (
             <>
               <InputLabel htmlFor="outlined-adornment-password">
-                Password
+                {label}
               </InputLabel>
               <OutlinedInput
                 onChange={inputHandler}
@@ -59,7 +59,7 @@ const Input = (props) => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
+                label={label}
               />
             </>
           )}
