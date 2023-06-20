@@ -165,7 +165,7 @@ const SignUp = () => {
             <Typography sx={{ padding: "0.5rem" }}>
               ID: <span className="user-info">{storeID}</span>
             </Typography>
-            <Typography sx={{ padding: "0.5rem" }}>
+            <Typography sx={{ padding: "0 0.5rem 1rem 0.5rem" }}>
               Password: <span className="user-info">{storePassword}</span>
             </Typography>
             <div className="modal-button">
