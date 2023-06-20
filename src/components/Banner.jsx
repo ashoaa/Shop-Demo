@@ -77,10 +77,13 @@ const Banner = () => {
               aria-controls={open ? "composition-menu" : undefined}
               aria-expanded={open ? "true" : undefined}
               aria-haspopup="true"
-              onClick={handleToggle}>
-              <AccountCircleIcon
-                sx={{ fontSize: "2rem", marginRight: "2rem", color: "white" }}
-              />
+              onClick={handleToggle}
+              sx={{
+                padding: "0",
+                margin: "0",
+                justifyContent: "end",
+              }}>
+              <AccountCircleIcon sx={{ fontSize: "2rem", color: "white" }} />
               <Badge
                 badgeContent={count}
                 color="error"
