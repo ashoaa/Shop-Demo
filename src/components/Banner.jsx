@@ -87,7 +87,7 @@ const Banner = () => {
               <Badge
                 badgeContent={count}
                 color="error"
-                sx={{ right: "35px", top: "-13px" }}></Badge>
+                sx={{ right: "2px", top: "-13px" }}></Badge>
             </Button>
 
             <Popper
@@ -104,9 +104,7 @@ const Banner = () => {
                     transformOrigin:
                       placement === "bottom-start" ? "left top" : "left bottom",
                   }}>
-                  <Paper
-                    sx={{ width: "150px", marginRight: "1rem" }}
-                    elevation={5}>
+                  <Paper sx={{ width: "150px" }} elevation={5}>
                     <ClickAwayListener onClickAway={handleClose}>
                       <MenuList
                         sx={{ color: "#0b3564" }}
