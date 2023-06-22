@@ -1,13 +1,7 @@
 .products {
   margin: 100px 1rem 0 1rem;
 }
-.items {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1rem;
-  row-gap: 1rem;
-  margin-bottom: 1rem;
-}
+
 .item-image {
   overflow: hidden;
   display: flex;
@@ -17,6 +11,7 @@
 }
 
 .item-image img {
+  cursor: pointer;
   margin-top: 0.5rem;
   max-height: 100%;
   max-width: 100%;

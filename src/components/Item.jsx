@@ -1,24 +1,29 @@
 import { Typography, Grid, Paper } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../store/slices/ItemSlice.jsx";
+import { dataActions } from "../store/slices/DataSlice.jsx";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import "./Item.css";
+import { useNavigate } from "react-router-dom";
 
 let categories = [];
+
 const Item = () => {
+  const data = useSelector((state) => state.data.data);
+
+  const navigate = useNavigate();
   const dipatch = useDispatch();
-  const [data, setData] = useState([]);
   const getItems = async () => {
     const response = await axios.get("https://fakestoreapi.com/products");
-    setData(response.data);
+    dipatch(dataActions.setData(response.data));
   };
 
   useEffect(() => {
     getItems();
-  }, []);
+  }, [data]);
 
   if (data.length > 0) {
     categories = data
@@ -66,7 +71,13 @@ const Item = () => {
                         }}>
                         <Paper elevation={5}>
                           <div className="item-image">
-                            <img src={product.image} />
+                            <img
+                              src={product.image}
+                              onClick={() => {
+                                console.log(product.id);
+                                navigate("p" + product.id);
+                              }}
+                            />
                           </div>
                           <Typography
                             sx={{

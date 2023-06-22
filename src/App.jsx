@@ -1,16 +1,43 @@
 import { useSelector } from "react-redux";
-import SignUp from "./SignUp.jsx";
-import LogIn from "./LogIn.jsx";
-import Home from "./Home.jsx";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+
+import SignUp from "./pages/SignUp.jsx";
+import LogIn from "./pages/LogIn.jsx";
+import Home from "./pages/Home.jsx";
+import Product from "./pages/Product.jsx";
+import HomeLayout from "./components/HomeLayout.jsx";
 const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Navigate to="signup" />,
+    },
+
+    {
+      path: "signup",
+      element: <SignUp></SignUp>,
+    },
+    { path: "login", element: <LogIn></LogIn> },
+    {
+      path: "home",
+      element: <HomeLayout />,
+      children: [
+        { path: "", element: <Home /> },
+        { path: ":productID", element: <Product /> },
+      ],
+    },
+  ]);
+
   const finishSignUp = useSelector((state) => state.form.finishSignUp);
   const logout = useSelector((state) => state.form.logout);
 
   return (
     <>
-      {!finishSignUp && <SignUp />}
-      {finishSignUp && logout && <LogIn />}
-      {!logout && <Home />}
+      <RouterProvider router={router} />
     </>
   );
 };

@@ -6,24 +6,30 @@ import {
   ClickAwayListener,
   Paper,
   Popper,
+  IconButton,
   Grow,
   Container,
   Badge,
 } from "@mui/material";
-
 import "./Banner.css";
 import { useState, useRef, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector, useDispatch } from "react-redux";
 import { formActions } from "../store/slices/FormSlice.jsx";
+import { useNavigate } from "react-router-dom";
 const Banner = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const ID = useSelector((state) => state.info.id);
   const count = useSelector((state) => state.item.count);
 
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+
+  const homeClickHandler = () => {
+    navigate("/home");
+  };
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -38,17 +44,9 @@ const Banner = () => {
   };
 
   const handleLogOut = () => {
+    navigate("../login");
     dispatch(formActions.logout());
   };
-
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    } else if (event.key === "Escape") {
-      setOpen(false);
-    }
-  }
 
   const prevOpen = useRef(open);
   useEffect(() => {
@@ -64,13 +62,21 @@ const Banner = () => {
       <header>
         <div className="banner">
           <div className="banner-info">
-            <HomeIcon sx={{ fontSize: "2rem", marginRight: "2rem" }} />
-            <Typography sx={{ paddingTop: "4px", fontSize: "1.5rem" }}>
+            <IconButton onClick={homeClickHandler} sx={{ color: "#ffffff" }}>
+              <HomeIcon sx={{ fontSize: "2rem" }} />
+            </IconButton>
+
+            <Typography
+              sx={{
+                paddingTop: "4px",
+                marginLeft: "2rem",
+                fontSize: "1.5rem",
+              }}>
               Hi {ID} !!
             </Typography>
           </div>
           <div className="banner-control">
-            <Button
+            <IconButton
               ref={anchorRef}
               id="composition-button"
               aria-controls={open ? "composition-menu" : undefined}
@@ -87,7 +93,7 @@ const Banner = () => {
                 badgeContent={count}
                 color="error"
                 sx={{ right: "2px", top: "-13px" }}></Badge>
-            </Button>
+            </IconButton>
 
             <Popper
               open={open}
@@ -109,8 +115,7 @@ const Banner = () => {
                         sx={{ color: "#0b3564" }}
                         autoFocusItem={open}
                         id="composition-menu"
-                        aria-labelledby="composition-button"
-                        onKeyDown={handleListKeyDown}>
+                        aria-labelledby="composition-button">
                         <Container>
                           <MenuItem
                             onClick={handleClose}

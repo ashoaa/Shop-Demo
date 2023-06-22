@@ -1,15 +1,18 @@
-import Input from "./components/Input.jsx";
-import Container from "./components/Container.jsx";
-import Btn from "./components/Btn.jsx";
+import Input from "../components/Input.jsx";
+import Container from "../components/Container.jsx";
+import Btn from "../components/Btn.jsx";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { formActions } from "./store/slices/FormSlice.jsx";
+import { formActions } from "../store/slices/FormSlice.jsx";
+import { useNavigate } from "react-router-dom";
 
 let idError, passwordError;
 let id = "";
 let password = "";
 
 const LogIn = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const storeID = useSelector((state) => state.info.id);
   const storePassword = useSelector((state) => state.info.password);
@@ -31,6 +34,7 @@ const LogIn = () => {
       setIDValid(false);
       setPasswordValid(false);
     } else {
+      navigate("/home");
       dispatch(formActions.logIn());
     }
   };

@@ -1,11 +1,12 @@
-import Input from "./components/Input.jsx";
-import Container from "./components/Container.jsx";
-import Btn from "./components/Btn.jsx";
+import Input from "../components/Input.jsx";
+import Container from "../components/Container.jsx";
+import Btn from "../components/Btn.jsx";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { infoActions } from "./store/slices/InfoSlice.jsx";
-import { formActions } from "./store/slices/FormSlice.jsx";
+import { infoActions } from "../store/slices/InfoSlice.jsx";
+import { formActions } from "../store/slices/FormSlice.jsx";
 import { Backdrop, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 let idError, emailError, passwordError, confirmError;
 let id = "";
@@ -14,6 +15,7 @@ let password = "";
 let confirm = "";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const storeID = useSelector((state) => state.info.id);
   const storePassword = useSelector((state) => state.info.password);
 
@@ -24,6 +26,7 @@ const SignUp = () => {
   const [open, setOpen] = useState(false);
 
   const modalHandler = () => {
+    navigate("/login");
     dispatch(formActions.signUp());
   };
 
