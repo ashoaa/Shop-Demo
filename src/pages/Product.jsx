@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Product = () => {
+  window.scrollTo({ top: 0, left: 0 });
   const data = useSelector((state) => state.data.data);
   const params = useParams();
   const id = parseInt(params.productID.slice(1)) - 1;
