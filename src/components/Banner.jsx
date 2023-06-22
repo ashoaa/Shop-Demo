@@ -16,8 +16,7 @@ import { useState, useRef, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector, useDispatch } from "react-redux";
-import { formAction } from "../store/store.jsx";
-
+import { formActions } from "../store/slices/FormSlice.jsx";
 const Banner = () => {
   const dispatch = useDispatch();
   const ID = useSelector((state) => state.info.id);
@@ -39,7 +38,7 @@ const Banner = () => {
   };
 
   const handleLogOut = () => {
-    dispatch(formAction.logout());
+    dispatch(formActions.logout());
   };
 
   function handleListKeyDown(event) {

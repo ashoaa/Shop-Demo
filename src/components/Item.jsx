@@ -2,7 +2,7 @@ import { Typography, Grid, Paper } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { itemAction } from "../store/store.jsx";
+import { itemActions } from "../store/slices/ItemSlice.jsx";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import "./Item.css";
@@ -27,11 +27,11 @@ const Item = () => {
   }
 
   const removeItemHandler = () => {
-    dipatch(itemAction.removeItem());
+    dipatch(itemActions.removeItem());
   };
 
   const addItemHandler = () => {
-    dipatch(itemAction.addItem());
+    dipatch(itemActions.addItem());
   };
 
   return (

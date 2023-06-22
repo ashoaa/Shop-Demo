@@ -3,7 +3,8 @@ import Container from "./components/Container.jsx";
 import Btn from "./components/Btn.jsx";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { infoActions, formAction } from "./store/store.jsx";
+import { infoActions } from "./store/slices/InfoSlice.jsx";
+import { formActions } from "./store/slices/FormSlice.jsx";
 import { Backdrop, Typography, Button } from "@mui/material";
 import "./SignUp.css";
 let idError, emailError, passwordError, confirmError;
@@ -23,7 +24,7 @@ const SignUp = () => {
   const [open, setOpen] = useState(false);
 
   const modalHandler = () => {
-    dispatch(formAction.signUp());
+    dispatch(formActions.signUp());
   };
 
   const dispatch = useDispatch();

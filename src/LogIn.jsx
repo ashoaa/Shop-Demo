@@ -3,7 +3,7 @@ import Container from "./components/Container.jsx";
 import Btn from "./components/Btn.jsx";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { formAction } from "./store/store.jsx";
+import { formActions } from "./store/slices/FormSlice.jsx";
 
 let idError, passwordError;
 let id = "";
@@ -31,7 +31,7 @@ const LogIn = () => {
       setIDValid(false);
       setPasswordValid(false);
     } else {
-      dispatch(formAction.logIn());
+      dispatch(formActions.logIn());
     }
   };
   return (
