@@ -10,8 +10,9 @@ const Btn = (props) => {
       <Button
         variant="contained"
         size="large"
-        sx={{ width: "80%" }}
+        sx={{ width: "80%", maxWidth: "300px" }}
         onClick={clickHandler}>
+        {props.children}
         {props.name}
       </Button>
     </div>
