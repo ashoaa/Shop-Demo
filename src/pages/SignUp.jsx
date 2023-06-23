@@ -2,9 +2,6 @@ import Input from "../components/Input.jsx";
 import Container from "../components/Container.jsx";
 import Btn from "../components/Btn.jsx";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { infoActions } from "../store/slices/InfoSlice.jsx";
-import { formActions } from "../store/slices/FormSlice.jsx";
 import { Backdrop, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
@@ -16,8 +13,8 @@ let confirm = "";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const storeID = useSelector((state) => state.info.id);
-  const storePassword = useSelector((state) => state.info.password);
+  const storeID = localStorage.getItem("id");
+  const storePassword = localStorage.getItem("password");
 
   const [idValid, setIDValid] = useState("true");
   const [emailValid, setEmailValid] = useState("true");
@@ -27,10 +24,7 @@ const SignUp = () => {
 
   const modalHandler = () => {
     navigate("/login");
-    dispatch(formActions.signUp());
   };
-
-  const dispatch = useDispatch();
 
   const idValidation = (inputID) => {
     id = inputID;
@@ -110,8 +104,8 @@ const SignUp = () => {
       t--;
     }
     if (t === 4 && idValid && emailValid && passwordValid && confirmValid) {
-      dispatch(infoActions.setID(id));
-      dispatch(infoActions.setPassword(password));
+      localStorage.setItem("id", id);
+      localStorage.setItem("password", password);
       setOpen(true);
     }
   };

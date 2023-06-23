@@ -1,29 +1,29 @@
 import { Typography, Grid, Paper } from "@mui/material";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../store/slices/ItemSlice.jsx";
-import { dataActions } from "../store/slices/DataSlice.jsx";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import "./Item.css";
 import { useNavigate } from "react-router-dom";
 
 let categories = [];
-
 const Item = () => {
-  const data = useSelector((state) => state.data.data);
+  const [data, setData] = useState([]);
+  const count = useSelector((state) => state.item.count);
+  localStorage.setItem("count", count);
 
   const navigate = useNavigate();
-  const dipatch = useDispatch();
+  const dispatch = useDispatch();
   const getItems = async () => {
     const response = await axios.get("https://fakestoreapi.com/products");
-    dipatch(dataActions.setData(response.data));
+    setData(response.data);
   };
 
   useEffect(() => {
     getItems();
-  }, [data]);
+  }, []);
 
   if (data.length > 0) {
     categories = data
@@ -32,11 +32,11 @@ const Item = () => {
   }
 
   const removeItemHandler = () => {
-    dipatch(itemActions.removeItem());
+    dispatch(itemActions.removeItem());
   };
 
   const addItemHandler = () => {
-    dipatch(itemActions.addItem());
+    dispatch(itemActions.addItem());
   };
 
   return (
@@ -74,7 +74,6 @@ const Item = () => {
                             <img
                               src={product.image}
                               onClick={() => {
-                                console.log(product.id);
                                 navigate("p" + product.id);
                               }}
                             />

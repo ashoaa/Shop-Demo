@@ -2,7 +2,6 @@ import {
   Typography,
   MenuItem,
   MenuList,
-  Button,
   ClickAwayListener,
   Paper,
   Popper,
@@ -15,13 +14,11 @@ import "./Banner.css";
 import { useState, useRef, useEffect } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useSelector, useDispatch } from "react-redux";
-import { formActions } from "../store/slices/FormSlice.jsx";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Banner = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const ID = useSelector((state) => state.info.id);
+  const ID = localStorage.getItem("id");
   const count = useSelector((state) => state.item.count);
 
   const [open, setOpen] = useState(false);
@@ -44,8 +41,8 @@ const Banner = () => {
   };
 
   const handleLogOut = () => {
+    localStorage.setItem("login", "false");
     navigate("../login");
-    dispatch(formActions.logout());
   };
 
   const prevOpen = useRef(open);

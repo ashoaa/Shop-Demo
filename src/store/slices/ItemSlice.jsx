@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+let storedCount = localStorage.getItem("count");
 const initialItemState = {
-  count: 0,
+  count: storedCount !== null ? parseInt(storedCount) : 0,
 };
 
 export const itemSlice = createSlice({

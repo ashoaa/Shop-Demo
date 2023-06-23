@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   createBrowserRouter,
   Navigate,
@@ -10,11 +9,20 @@ import LogIn from "./pages/LogIn.jsx";
 import Home from "./pages/Home.jsx";
 import Product from "./pages/Product.jsx";
 import HomeLayout from "./components/HomeLayout.jsx";
+import { loader as itemLoader } from "./pages/Product.jsx";
 const App = () => {
+  const login = localStorage.getItem("login");
+  let main = "signup";
+  if (login === "true") {
+    main = "home";
+  }
+  if (login === "false") {
+    main = "login";
+  }
   const router = createBrowserRouter([
     {
       path: "",
-      element: <Navigate to="signup" />,
+      element: <Navigate to={main} />,
     },
 
     {
@@ -26,14 +34,11 @@ const App = () => {
       path: "home",
       element: <HomeLayout />,
       children: [
-        { path: "", element: <Home /> },
-        { path: ":productID", element: <Product /> },
+        { index: true, element: <Home /> },
+        { path: ":productID", element: <Product />, loader: itemLoader },
       ],
     },
   ]);
-
-  const finishSignUp = useSelector((state) => state.form.finishSignUp);
-  const logout = useSelector((state) => state.form.logout);
 
   return (
     <>
