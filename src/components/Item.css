@@ -21,7 +21,7 @@
 .item-pay {
   display: grid;
   grid-template-columns: 70px 1fr;
-  column-gap: 1rem;
+  column-gap: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
