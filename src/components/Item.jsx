@@ -1,6 +1,5 @@
+/* eslint-disable react/prop-types */
 import { Typography, Grid, Paper } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../store/slices/ItemSlice.jsx";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -9,21 +8,12 @@ import "./Item.css";
 import { useNavigate } from "react-router-dom";
 
 let categories = [];
-const Item = () => {
-  const [data, setData] = useState([]);
+const Item = ({ data }) => {
   const count = useSelector((state) => state.item.count);
   localStorage.setItem("count", count);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const getItems = async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    setData(response.data);
-  };
-
-  useEffect(() => {
-    getItems();
-  }, []);
 
   if (data.length > 0) {
     categories = data
