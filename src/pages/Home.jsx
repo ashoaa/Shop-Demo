@@ -3,17 +3,19 @@ import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
-  const data = useLoaderData();
+  const categories = useLoaderData();
 
   return (
     <>
-      <Item data={data} />
+      <Item categories={categories} />
     </>
   );
 };
 
 export default Home;
 export const loader = async () => {
-  const response = await axios.get("https://fakestoreapi.com/products/");
+  const response = await axios.get(
+    "https://fakestoreapi.com/products/categories"
+  );
   return response.data;
 };
